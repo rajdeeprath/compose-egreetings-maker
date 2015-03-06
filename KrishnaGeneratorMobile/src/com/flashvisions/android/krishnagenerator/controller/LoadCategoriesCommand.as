@@ -14,8 +14,14 @@ package com.flashvisions.android.krishnagenerator.controller
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
+	import org.as3commons.logging.api.ILogger
+	import org.as3commons.logging.api.LOGGER_FACTORY
+	import org.as3commons.logging.api.getLogger;
+	
 	public class LoadCategoriesCommand extends SimpleCommand implements ICommand
 	{
+		private static var logger:ILogger = getLogger(LoadCategoriesCommand);
+		
 		public function result(re:Object):void
 		{
 			var dataCentreProxy:DataCentreProxy = facade.retrieveProxy(DataCentreProxy.NAME) as DataCentreProxy;
@@ -34,6 +40,8 @@ package com.flashvisions.android.krishnagenerator.controller
 		
 		override public function execute(notification:INotification):void 
 		{
+			logger.info("requesting categories list");
+			
 			var loadInstructionsDelegate:LoadCategoriesDelegate = new LoadCategoriesDelegate(new Responder(result, fault));
 			loadInstructionsDelegate.loadCategories();
 		}		

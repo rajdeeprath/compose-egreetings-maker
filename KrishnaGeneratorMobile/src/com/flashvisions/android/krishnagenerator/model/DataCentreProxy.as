@@ -28,6 +28,7 @@ package com.flashvisions.android.krishnagenerator.model
 	import flash.utils.clearTimeout;
 	import flash.utils.setInterval;
 	import flash.utils.setTimeout;
+	import org.as3commons.logging.api.ILogger;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	import pl.mateuszmackowiak.nativeANE.dialogs.NativeListDialog;
@@ -37,8 +38,16 @@ package com.flashvisions.android.krishnagenerator.model
 	import pl.mateuszmackowiak.nativeANE.dialogs.NativeAlertDialog;
 	import pl.mateuszmackowiak.nativeANE.events.NativeDialogEvent;
 	
+	import org.as3commons.logging.api.ILogger
+	import org.as3commons.logging.api.LOGGER_FACTORY
+	import org.as3commons.logging.api.getLogger;
+	import org.as3commons.logging.setup.SimpleTargetSetup;
+	import org.as3commons.logging.setup.target.TraceTarget;
+	
 	public class DataCentreProxy extends Proxy implements IProxy
 	{
+		private static var logger:ILogger = getLogger(DataCentreProxy);
+		
 		public static const GATEWAY:String = "http://funbling.flashvisions.com/flashservices/";
 		public static const APPURL:String = "https://play.google.com/store/apps/details?id=air.air.Compose";
 		public static const STORAGE_DIRECTORY:String = "compose";
@@ -74,6 +83,11 @@ package com.flashvisions.android.krishnagenerator.model
 		private var bonjour:uint;
 		private var drawingBoardData:DrawingBoardData;
 		
+		
+		private function initLogging():void
+		{
+			LOGGER_FACTORY.setup = new SimpleTargetSetup(new TraceTarget());
+		}
 		
 		public function DataCentreProxy(data:Object=null)
 		{
@@ -275,6 +289,8 @@ package com.flashvisions.android.krishnagenerator.model
 		
 		override public function onRegister():void 
 		{
+			initLogging();
+			
 			/* init cache directory */
 			var cacheDirectory:File = File.documentsDirectory.resolvePath(STORAGE_DIRECTORY);
 			if (!cacheDirectory.exists || !cacheDirectory.isDirectory)	cacheDirectory.createDirectory();
@@ -436,7 +452,7 @@ package com.flashvisions.android.krishnagenerator.model
 		
 		public function buildCache():void
 		{
-			const DAYS1:int = 15 * (24 * 60 * 60 * 1000);
+			const DAYS1:int = 7 * (24 * 60 * 60 * 1000);
 			const DAYS2:int = 7 * (24 * 60 * 60 * 1000);
 			
 			var currentTimeStamp:int = new Date().getTime();
@@ -445,10 +461,12 @@ package com.flashvisions.android.krishnagenerator.model
 			var lastCategoryCache:int = (lastCategoryCacheData == null)?0:lastCategoryCacheData as int;
 			var lastInstructionCache:int = (lastInstuctionCacheData == null)?0:lastInstuctionCacheData as int;
 
-			
 			if (isNetworkConnected()) 
 			{
-				if (currentTimeStamp - lastCategoryCache >= DAYS1)
+				var timeElapsed:Number = currentTimeStamp - lastCategoryCache;
+				logger.info("timeElapsed since last cache {0}", [timeElapsed]);
+				  
+				if (timeElapsed >= DAYS1 || timeElapsed<0)
 				{
 					facade.sendNotification(ApplicationFacade.CACHECATEGORIES);
 					writeDataStore("lastCategoryCacheDate", currentTimeStamp);

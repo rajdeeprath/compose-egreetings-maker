@@ -13,8 +13,15 @@ package com.flashvisions.android.krishnagenerator.controller
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.AsyncCommand;
 	
+	import org.as3commons.logging.api.ILogger
+	import org.as3commons.logging.api.LOGGER_FACTORY
+	import org.as3commons.logging.api.getLogger;
+	import org.as3commons.logging.setup.SimpleTargetSetup;
+	
 	public class InitCategoriesCommand extends AsyncCommand implements IAsyncCommand
 	{
+		private static var logger:ILogger = getLogger(InitCategoriesCommand);
+		
 		private var responder:Responder;
 		private var dataCentreProxy:DataCentreProxy;
 		
@@ -48,7 +55,7 @@ package com.flashvisions.android.krishnagenerator.controller
 			}
 			catch (e:Error)
 			{
-				trace(e.message);
+				logger.info("Error => {0}", [e.message]);
 			}
 			finally 
 			{

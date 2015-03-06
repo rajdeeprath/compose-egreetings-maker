@@ -1,7 +1,7 @@
 :user_configuration
 
 :: Path to Flex SDK
-set FLEX_SDK=H:\Program Files\FlashDevelop\Tools\flexsdk3.9
+set FLEX_SDK=H:\flex
 ::C:\Program Files\Adobe\Adobe Flash Builder 4.6\sdks\flex_sdk_4.6_air3.5_fp11.5
 
 :: Path to Android SDK
