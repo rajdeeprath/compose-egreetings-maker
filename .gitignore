@@ -42,5 +42,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-#svn files
+#special files
 .svn
+*.tmp
+*.apk
+KrishnaGeneratorMobile/bat/SetupApplication.bat
+KrishnaGeneratorMobile/bat/SetupSDK.bat
+KrishnaGeneratorMobile/bat/SetupSDK.bat
