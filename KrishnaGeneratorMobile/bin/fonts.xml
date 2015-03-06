@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fonts mainpath="./fonts/main/" previewpath="./fonts/preview/" >
+<font name="Forte" preview="Forte.jpg" data="Forte.swf"></font>
+<font name="Elephant" preview="Elephant.jpg" data="Elephant.swf"></font>
+<font name="Kringle" preview="Kringle.jpg" data="Kringle.swf"></font>
+<font name="Gigi" preview="Gigi.jpg" data="Gigi.swf"></font>
+<font name="Corbel" preview="Corbel.jpg" data="Corbel.swf"></font>
+<font name="Heartbreaker" preview="Heartbreaker.jpg" data="Heartbreaker.swf"></font>
+<font name="Gabriola" preview="Gabriola.jpg" data="Gabriola.swf"></font>
+</fonts>

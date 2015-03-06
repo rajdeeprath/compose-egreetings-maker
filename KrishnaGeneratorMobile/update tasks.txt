@@ -1,0 +1,6 @@
+Next Update:
+
+chinese, japanese and korean fonts - next time
+localise assets
+ testing
+ list scroll issue

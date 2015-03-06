@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<application xmlns="http://ns.adobe.com/air/application/3.9">
+  <id>air.Compose</id>
+  <versionNumber>1.3.7</versionNumber>
+  <supportedProfiles>mobileDevice</supportedProfiles>
+  <filename>Compose</filename>
+  <name>Compose</name>
+  <android>
+    <manifestAdditions><![CDATA[
+	<manifest android:installLocation="preferExternal">
+	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" android:required="false" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-feature android:name="android.hardware.touchscreen.multitouch" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+	<application>
+	<activity android:label="@string/decoratives" android:theme="@android:style/Theme.Dialog" android:configChanges="orientation|keyboardHidden|screenSize" android:excludeFromRecents="true" android:name="com.flashvisions.mobile.android.extensions.compose.ItemListActivity" />
+	<activity android:label="@string/backgrounds" android:theme="@android:style/Theme.Dialog" android:configChanges="orientation|keyboardHidden|screenSize" android:excludeFromRecents="true" android:name="com.flashvisions.mobile.android.extensions.compose.BackgroundListActivity" />
+	<activity android:theme="@android:style/Theme.Dialog" android:configChanges="orientation|keyboardHidden|screenSize" android:excludeFromRecents="true" android:name="com.flashvisions.mobile.android.extensions.compose.IntroActivity" />
+	<activity android:theme="@android:style/Theme.Dialog" android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+	</application>
+	</manifest>]]></manifestAdditions>
+  </android>
+  <iPhone>
+    <InfoAdditions><![CDATA[<key>UIStatusBarStyle</key>
+<string>UIStatusBarStyleBlackOpaque</string>
+<key>UIRequiresPersistentWiFi</key>
+<string>NO</string>
+<key>UIPrerenderedIcon</key>
+<true />
+<key>UIApplicationExitsOnSuspend</key>
+<true />
+<key>UIDeviceFamily</key>
+<array>
+	<!-- iPhone support -->
+	<string>1</string>
+	<!-- iPad support -->
+	<!--<string>2</string>-->
+</array>]]></InfoAdditions>
+    <requestedDisplayResolution>high</requestedDisplayResolution>
+  </iPhone>
+  <initialWindow>
+    <title>Compose</title>
+    <content>Compose.swf</content>
+    <visible>true</visible>
+    <fullScreen>false</fullScreen>
+    <autoOrients>true</autoOrients>
+    <aspectRatio>landscape</aspectRatio>
+    <renderMode>direct</renderMode>
+    <systemChrome>standard</systemChrome>
+  </initialWindow>
+  <icon>
+    <image48x48>icons/icon_48.png</image48x48>
+    <image57x57>icons/icon_57.png</image57x57>
+    <image72x72>icons/icon_72.png</image72x72>
+    <image114x114>icons/icon_114.png</image114x114>
+    <image512x512>icons/icon_512.png</image512x512>
+  </icon>
+  <!-- 
+	AIR options:
+	http://livedocs.adobe.com/flex/3/html/File_formats_1.html#1043413
+	
+	AIR mobile options:
+	http://help.adobe.com/en_US/air/build/WSfffb011ac560372f-5d0f4f25128cc9cd0cb-7ffe.html
+	
+	Android manifest documentation:
+	http://developer.android.com/guide/topics/manifest/manifest-intro.html
+	-->
+  <description>Multitouch greetings application. Create your own ecards and share all over thw world.</description>
+  <copyright>flashvisions.com</copyright>
+  <extensions>
+    <extensionID>com.ssd.ane.androidextensions</extensionID>
+    <extensionID>pl.mateuszmackowiak.nativeANE.NativeDialogs</extensionID>
+    <extensionID>com.flashvisions.mobile.android.extensions.net.NetworkInfo</extensionID>
+	<extensionID>com.flashvisions.mobile.android.extensions.compose.ComposeUtils</extensionID>
+  </extensions>
+</application>
